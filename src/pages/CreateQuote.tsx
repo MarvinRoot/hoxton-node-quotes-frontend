@@ -36,7 +36,7 @@ export function CreateQuote() {
 
                 <label style={{ display: "grid", gap: "1rem" }}>
                     <span>Author Age</span>
-                    <input required name="img" type="text" placeholder="Enter author's image url" />
+                    <input required name="age" type="text" placeholder="Enter author's age" />
                 </label>
 
                 <button style={{color: "#282c34", padding: "10px", borderRadius: "25px", border: "none"}} type="submit" value="Submit">
