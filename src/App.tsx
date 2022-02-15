@@ -13,7 +13,8 @@ function App() {
     fetch('http://localhost:3001/authors').then(resp => resp.json())
         .then(authorsFromServer => setAuthors(authorsFromServer))
   },[])
-
+  
+  if(!authors) return null
   return (
     <div className="App">
       <Routes>

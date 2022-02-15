@@ -1,10 +1,18 @@
 export function CreateQuote() {
     
-    function addUser(firstName: string, lastName:string, quotee: string, image: string, age:string|number ) {
+    function addAuthor(firstNamee: string, lastNamee:string, imagee: string, agee:string|number ) {
         fetch('http://localhost:3001/quotes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ authorFirstName: firstName, authorLastName: lastName, quote: quotee, authorImg: image, authorAge: age})
+            body: JSON.stringify({ firstName: firstNamee, lastName: lastNamee, image: imagee, age: agee})
+        })
+    }
+
+    function addQuote(quotee: string) {
+        fetch('http://localhost:3001/quotes', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({quote: quotee})
         })
     }
     return (
@@ -12,7 +20,8 @@ export function CreateQuote() {
             <h1>Hey there! Add your quote<br></br></h1>
             <form style={{ display: "grid", gap: "1rem" }} onSubmit={(e) => {
                 e.preventDefault()
-                addUser(e.target.firstName.value, e.target.lastName.value, e.target.quote.value, e.target.img.value, e.target.age.value)
+                addAuthor(e.target.firstName.value, e.target.lastName.value, e.target.img.value, e.target.age.value)
+                addQuote(e.target.quote.value)
             }}>
                 <label style={{ display: "grid", gap: "1rem" }}>
                     <span>Quote</span>

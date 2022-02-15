@@ -5,7 +5,7 @@ type Props = {
     authors: Author[] | null
 }
 
-export function Welcome({authors}: Props) {
+export function Welcome({ authors }: Props) {
     const [quote, setQuote] = useState<Quote | null>()
     const [author, setAuthor] = useState<Author | null>()
 
@@ -13,12 +13,16 @@ export function Welcome({authors}: Props) {
         fetch('http://localhost:3001/getRandomQuote').then(resp => resp.json())
             .then(quoteFromServer => {
                 setQuote(quoteFromServer)
-                const match = authors?.find(author => author.id === quote?.authorId)
-                setAuthor(match)
             })
     }
 
-    if(authors === null) return <h1>Loading</h1>
+    useEffect(() => {
+        const match = authors?.find(author => author.id === quote?.authorId)
+        setAuthor(match)
+        console.log(match)
+    }, [quote])
+
+    if (authors === null) return <h1>Loading</h1>
     return (
         <header className="App-header">
             <img src="https://www.laphamsquarterly.org/sites/default/files/styles/tall_rectangle_custom_user_small_2x/public/images/contributor/plato_360x450.jpg?itok=oC0U0lCq&timestamp=1414179137" className="App-logo" alt="logo" />
@@ -28,8 +32,8 @@ export function Welcome({authors}: Props) {
                 -{author?.firstName} {author?.lastName}
             </p>
             <ul >
-                <li><a style={{textDecoration: "none", color: "unset"}} href={`/quotes/${quote?.id}`}> {`/quotes/${quote?.id}`} </a></li>
-                <li><a style={{textDecoration: "none", color: "unset"}} href="/createQuote"> /createQuote </a></li>
+                <li><a style={{ textDecoration: "none", color: "unset" }} href={`/quotes/${quote?.id}`}> {`/quotes/${quote?.id}`} </a></li>
+                <li><a style={{ textDecoration: "none", color: "unset" }} href="/createQuote"> /createQuote </a></li>
             </ul>
         </header>
     )

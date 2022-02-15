@@ -15,10 +15,13 @@ export function QuoteInfo({ authors }:Props) {
         fetch(`http://localhost:3001/quotes/${params.id}`).then(resp => resp.json())
         .then(quoteFromServer => {
             setQuote(quoteFromServer)
-            const match = authors?.find(author => author.id === quote?.authorId)
-            setAuthor(match)
         })
     }, [])
+
+    useEffect(() => {
+        const match = authors?.find(author => author.id === quote?.authorId)
+            setAuthor(match)
+    }, [quote])
 
     if(quote === null) return <h1>LOADING</h1>
     return (
