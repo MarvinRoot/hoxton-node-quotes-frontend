@@ -1,8 +1,13 @@
 export type Quote = {
     id: number
+    authorId: number
     quote: string
-    authorAge: number | string
-    authorFirstName: string
-    authorLastName: string
-    authorImg: string
 };
+
+export type Author = {
+    id: number
+    firstName: string
+    lastName: string
+    age: number | string
+    image: string
+}

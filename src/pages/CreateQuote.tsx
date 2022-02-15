@@ -1,11 +1,11 @@
 export function CreateQuote() {
     
-    function addUser(firstName: string, lastName:string, quotee: string, image: string, age:string ) {
+    function addUser(firstName: string, lastName:string, quotee: string, image: string, age:string|number ) {
         fetch('http://localhost:3001/quotes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ authorFirstName: firstName, authorLastName: lastName, quote: quotee, authorImg: image, authorAge: age})
-        }).then(resp => resp.json())
+        })
     }
     return (
         <header className="App-header">
@@ -45,7 +45,6 @@ export function CreateQuote() {
             </form>
             <ul >
                 <li><a style={{ textDecoration: "none", color: "unset" }} href="/welcome"> /welcomePage </a></li>
-                <li><a style={{ textDecoration: "none", color: "unset" }} href="/createQuote"> /createQuote </a></li>
             </ul>
         </header>
     )
